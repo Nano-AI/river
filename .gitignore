@@ -1,0 +1,12 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+codex.log
+milestones.bundle
+.DS_Store
+screenshots/
+STATUS.md
+RUN-NOTES.md
+PROMPT2.md
+run2.sh

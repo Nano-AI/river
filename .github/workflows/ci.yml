@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm run verify
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: river-site
+          path: dist/
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v7.0.2
+        if: failure()
+        with:
+          name: browser-failure-report
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore

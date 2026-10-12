@@ -1,0 +1,26 @@
+{
+  "name": "river-poker-trainer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs public",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs dist",
+    "test": "node --test tests/*.test.mjs",
+    "test:e2e": "playwright test",
+    "screenshots": "node scripts/screenshots.mjs",
+    "verify": "npm run build && npm test && npm run test:e2e",
+    "math:audit": "node scripts/math-audit.mjs",
+    "animations": "node scripts/animations.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.64.0",
+    "@resvg/resvg-js": "^2.6.2",
+    "jsdom": "^29.1.1"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}
