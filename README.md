@@ -87,7 +87,7 @@ npx playwright install chromium webkit
 npm run verify
 ```
 
-This builds the app and runs the Node/math tests plus Chromium and WebKit browser tests. The browser suite covers the authored flows, accessibility, narrow layouts, animations, reduced motion, persistence, and offline use. One WebKit service-worker inspection test is skipped; Chromium exercises the full offline lifecycle.
+This builds the app and runs the Node/math tests plus Chromium and WebKit browser tests. The browser suite covers the authored flows, accessibility, narrow layouts, animations, reduced motion, persistence, and offline use. CI runs the browser suite on macOS, matching the locally checked WebKit platform. One WebKit service-worker inspection test is skipped; Chromium exercises the full offline lifecycle.
 
 Useful commands:
 
