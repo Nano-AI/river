@@ -99,6 +99,7 @@ test('deal, flip, sequential streets, chips, distinct reveals, bar and streak us
   expect(await page.evaluate(() => document.getAnimations().every(a => a.effect.getKeyframes().every(f => !('transform' in f))))).toBe(true);
 });
 test('phone animation has no sustained main-thread frame stalls', async ({ page }) => {
+  test.skip(Boolean(process.env.CI), 'Frame-rate budgets require controlled hardware; shared CI verifies animation behavior instead.');
   await page.goto('/');
   await page.locator('.fresh .card-flipper').first().waitFor();
   const deltas = await page.evaluate(() => new Promise(resolve => {
