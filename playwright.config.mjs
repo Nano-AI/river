@@ -4,7 +4,7 @@ export default defineConfig({
   fullyParallel: true,
   timeout: 30000,
   retries: 0,
-  workers: 2,
+  workers: process.env.CI ? 1 : 2,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: { colorScheme: 'light', baseURL: 'http://127.0.0.1:4174', trace: 'retain-on-failure', screenshot: 'only-on-failure' },
   webServer: [{ command: 'node scripts/serve.mjs dist', env: { PORT: '4174' }, port: 4174, reuseExistingServer: false }, { command: 'node scripts/serve.mjs dist', env: { PORT: '4176', BASE_PATH: '/poker/' }, port: 4176, reuseExistingServer: false }],

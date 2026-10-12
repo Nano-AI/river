@@ -22,6 +22,7 @@ async function answer(page, type, s) {
   await expect(page.locator('#result-title')).toHaveText('Nice read.');
 }
 for (const type of ['equity', 'outs', 'pot', 'range']) test(`${type}: all spots, grades, details, persistence, light/dark accessibility`, async ({ page }) => {
+  test.slow(); // Each case visits every authored spot and audits both themes.
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
   await page.goto('/#' + type);
